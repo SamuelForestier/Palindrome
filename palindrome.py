@@ -1,3 +1,8 @@
+import time
+
+start_time = time.time()
+
+
 def is_palindrome(product):
     """
     Checks if the given number is a palindrome.
@@ -11,7 +16,7 @@ def is_palindrome(product):
     return str(product) == str(product)[::-1]
 
 
-def generate_palindrome(limit=1000):
+def generate_palindrome(limit=999):
     """
     Generates the largest palindrome that can be made from the product of four 4-digit numbers
     that are greater than or equal to the limit.
@@ -22,8 +27,10 @@ def generate_palindrome(limit=1000):
     Returns:
         int: The largest palindrome made from the product of four 4-digit numbers that are greater than
         or equal to the limit.
+        int: The number of palindrome products found.
     """
     max_palindrome = 0
+    palindrome_finder = 0
     for i in range(9999, limit, -1):
         for j in range(i, limit, -1):
             for k in range(j, limit, -1):
@@ -31,7 +38,8 @@ def generate_palindrome(limit=1000):
                     product = i * j * k * l
                     if product > max_palindrome and is_palindrome(product):
                         max_palindrome = product
-    return max_palindrome
+                        palindrome_finder += 1
+    return (max_palindrome, palindrome_finder)
 
 
 def max_palindrome():
@@ -44,12 +52,13 @@ def max_palindrome():
     """
     max_generated_palindrome = 0
     for i in range(99, 1, -1):
-        generated_palindrome = generate_palindrome(i * 100)
+        (generated_palindrome, palindrome_finder) = generate_palindrome(i * 100)
         if generated_palindrome > max_generated_palindrome:
             max_generated_palindrome = generated_palindrome
         elif (
             generated_palindrome == max_generated_palindrome
             and generated_palindrome != 0
+            and palindrome_finder > 1
         ):
             break
     return max_generated_palindrome
@@ -57,4 +66,11 @@ def max_palindrome():
 
 result = max_palindrome()
 
-print(result)
+print(
+    f"The largest palindrome that can be made from the product of four 4-digit numbers is {result}."
+)
+
+end_time = time.time()
+
+execution_time = end_time - start_time
+print(f"Execution time: {execution_time} seconds")
