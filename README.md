@@ -72,7 +72,6 @@ Maintenant notre fonction generate_palindrome() nous retournera uniquement le pl
 Pour notre dernière optimisation nous allons créer une fonction qui va appeler generate_palindrome() sur plusieurs intervalles.
 ```py
 def max_palindrome():
-
     max_generated_palindrome = 0
     for i in range(99, 1, -1):
         (generated_palindrome, palindrome_finder) = generate_palindrome(i * 100)
@@ -92,4 +91,5 @@ Cette dernière vérification nous permet de ne pas rater un potentiel palindrom
 
 ## Solution : 
 Lors de mon premier commit j'ai pu obtenir le bon résultat avec un temps moyen de 56 secondes.  
-Cependant j'ai rajouté une dernière vérification qui compte le nombre de palindromes retourné afin d'être sûr que notre palindrome soit bien le plus grand. Cette modification force le programme à faire une itération de plus sur un intervalle encore plus imposant et le temps moyen d'exécution est passé à 180 secondes.
+Cependant j'ai rajouté une dernière vérification qui compte le nombre de palindromes retourné afin d'être sûr que notre palindrome soit bien le plus grand.  
+Cette modification force le programme à faire une itération de plus sur un intervalle encore plus imposant et le temps moyen d'exécution est passé à 180 secondes.
